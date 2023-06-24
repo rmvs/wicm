@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "lib": ["dom","ES2017","esnext"],
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    // "module": "commonjs",
+    // "target": "es6",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "prisma": ["./src/prisma/*"],
+      "public/*": ["./public/*"]
+    }
+  },
+  "ts-node": {
+    "esm": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  // "files": ["src/index.ts"],
+  "include": ["require.d.ts","src/**/*"]
+}

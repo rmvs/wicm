@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: "Oxygen";
+    src: url("../fonts/Oxygen-Light.ttf");
+}
+
+* {
+    font-family: "Oxygen" !important;
+    font-size: 14px;
+}
+
+
+:root {
+
+    --color-button-light: #fff;
+
+    --sider-background-default: #001529;
+    --header-background-default: rgb(255, 255, 255);
+    --main-content-background-default: rgb(255, 255, 255);
+    --content-background-default: #f5f5f5;
+    --card-background-default: #ffffff;
+    --table-header-default: #fafafa;
+
+    --header-background-dark: #2d333b;
+    --sider-background-dark: #22272e;
+    --main-content-background-dark: #22272e;
+    --content-background-dark: #1c2128;
+    --card-background-dark: #1c2128;
+    --table-header-dark: #2d333b;
+
+    --sider-bg: var(--sider-background-default);
+    --header-bg: var(--header-background-default);
+    --main-content-bg: var(--main-content-background-default);
+    --content-bg: var(--content-background-default);
+    --card-bg: var(--card-background-default);
+
+
+    --table-header-bg: var(--table-header-default);
+
+
+    --sider-border-dark: 1px solid #373e47;
+    --content-border-dark: 1px solid #444c56;
+
+    --sider-border-light: transparent;
+    --content-border-light: transparent;
+
+    --sider-border: var(--sider-border-light);
+    --content-border: var(--content-border-light);
+
+    --color-dark: white;
+    --color-light: black;
+
+    --color: var(--color-light);
+
+    --button-bg-color-dark: #373e47;
+    --button-bg-color-light:  var(--color-button-light);
+
+    --button-bg-color: var(--button-bg-color-light);
+
+    --button-color-dark: white;
+    --button-color-light: black;
+
+    --button-color: var(--button-color-light);
+
+    --dark-mode-icon-color-light: invert(0);
+    --dark-mode-icon-color-dark: invert(1);
+
+    --dark-mode-icon-color: var(--button-bg-color-light);
+
+    --dropdown-bg-color-dark: #2d333b;
+    --dropdown-bg-color-light: rgb(255, 255, 255);
+
+    --dropdown-bg: var(--dropdown-bg-color-light);
+
+    --menu-color: white;
+}
+
+#dropdown {
+    display: none;
+}
+
+.app-logo {
+    color: #fff;
+    background: url('../images/pack.svg');
+    width: 50px;
+    height: 50px;
+}

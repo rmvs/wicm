@@ -1,0 +1,21 @@
+{%  extends './base.twig' %}
+{% block index %}
+{% if req.session.user %}
+{% include './nav.twig' %}
+<header class="bg-white dark:bg-gray-900 dark:border-b-indigo-900 dark:border-b shadow">
+	<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-slate-300"> 
+                {% block page_title %}{% endblock %}
+            </h1>
+		</div>
+</header>
+{% endif %}
+
+{# class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl" #}
+	<main id="main" class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"> 
+        {# <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"> #}
+            {% block main_content %}
+            {% endblock %}
+        {# </div> #}
+	</main 
+{% endblock %}

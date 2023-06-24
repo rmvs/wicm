@@ -1,0 +1,10 @@
+node_modules
+build
+.pulumitoken
+*.mjs
+!.env
+.env.*
+bkp/*
+.env
+public/upload/
+Pulumi.yaml

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/css/global.css">
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>     -->
+    <title>WICM - Dashboard</title>
+  </head>
+  <body id="app">
+    <div id="container">
+        <div class="layout">
+            <aside class="sider">
+                <div class="sider-children">
+                    <div class="logo"></div>
+                    <!-- <div class="menu-wrapper"> -->
+                        <ul class="menu">
+                            <li class="menu-item menu-item-selected">
+                                <a href="/">Dashboard</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/users">Usuários</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/configs">Configurações</a>
+                            </li>                       
+                        </ul>
+                    <!-- </div> -->
+                </div>
+            </aside>
+            <div class="content">
+                <header class="header">
+                    <div class="nav-header">
+                        <div class="nav-header-items">
+                            <div class="nav-header-item">
+                                
+                            </div> 
+                            <div class="nav-header-item">
+                                <Button class="default" onclick="setDarkMode()">
+                                    {# {{ !darkMode ? 'Dark Mode' : 'Light Mode' }} #}
+                                    <img id="dark-mode" src="images/mode.svg" alt="dark-mode"><span id="dark-mode-lbl"></span>
+                                </Button>                
+                                <div class="nav-dropdown">                                
+                                    <a href="#">
+                                        BEM VINDO(A) admin
+                                        <span>
+                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path></svg>
+                                        </span>                                    
+                                    </a>
+                                    <div class="dropdown-content">
+                                        <div>
+                                            <a href="#">Ver conta</a>
+                                        </div>
+                                        <div>
+                                            <a href="#">Sair</a>
+                                        </div>
+                                    </div>                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main class="content-wrapper">
+                    <nav class="breadcrumb">
+                        <ol>
+                            <li>Usuários</li>
+                        </ol>
+                    </nav>
+                    <div class="main-content">
+                        <div class="grid-container">                            
+                            <div class="grid-item">
+                                <div class="card form-user">
+                                    <div class="card-body card-users">
+                                        <form>
+                                            <table>
+                                                <caption>Adicionar um usuário</caption>
+                                                <tr>
+                                                    <td>Username</td>
+                                                    <td><input type="text"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Admin
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"><Button class="default">Criar usuário</Button></td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                        {# <div class="grid-container">
+                                            <div class="grid-item">Username</div>
+                                            <div class="grid-item"><input type="text"></div>
+                                        </div>
+                                        <div class="grid-container">
+                                            <div class="grid-item">Admin</div>
+                                            <div class="grid-item"><input type="checkbox"></div>
+                                        </div>
+                                        <div class="grid-container">
+                                            <div class="grid-item"><input type="button" value="Create user"></div>
+                                        </div> #}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <div class="grid-item">
+                                <div class="users-list-container">
+                                    <div class="card users-list">
+                                        <div class="card-body">
+                                            <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Nome
+                                                            </th>
+                                                            <th>
+                                                                Papel
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Charla Rosa Waterman</td>
+                                                            <td>ADMIN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Atlas Persefoni Fleming</td>
+                                                            <td>USER</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Boris Tekla Bulgari</td>
+                                                            <td>ADMIN</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Lukas Aron Kleid</td>
+                                                            <td>USER</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kassidy Dobroslava Herrmann</td>
+                                                            <td>USER</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>                              
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="dist/js/app.js" type="module"></script>
+  </body>
+</html>
