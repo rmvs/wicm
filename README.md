@@ -21,6 +21,12 @@ You can view client code is located [here](./src/client/). This projects makes u
 You can install dependencies using
 
 ```sh
+npm install
+```
+
+To build this project
+
+```sh
 npm run build
 ```
 
