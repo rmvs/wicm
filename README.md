@@ -10,7 +10,7 @@ You can get an overview [here](./docs/Web%20Interface%20for%20Container%20Manage
 This project was made using Node.js + Express.js for server side rendering. Webpack bundles all server code (views, styles, and modules) in a single file.
 
 - This app makes uses of [Prisma](https://github.com/prisma/prisma) ORM for persiting user data.
-- All session data are cookie-based.
+- All session data are memory-based.
 - [Twig.js](https://github.com/twigjs/twig.js/) is used as a template engine
 
 ## Client tier
