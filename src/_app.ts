@@ -7,6 +7,7 @@ import  {ExpressView} from "twigjs-loader";
 import dashboardRoute from '@/routes/dashboard'
 import volumesRoute from '@/routes/volumes'
 import containersRoute from '@/routes/containers'
+import usersRouter from './routes/users'
 import navBar from '@/routes/navbar'
 import servicesRouter from '@/routes/services'
 import settingsRouter from '@/routes/settings'
@@ -18,6 +19,8 @@ import signUpRouter from '@/routes/signup'
 import appDbContext from '@/prisma'
 import stacksRouter from '@/routes/stacks'
 import cors from 'cors'
+import { expressjwt } from 'express-jwt';
+import serviceRouter from './routes/service'
 
 
 // import indexRouter from './src/routes'
@@ -27,11 +30,17 @@ import cors from 'cors'
 
 const app = express();
 
+app.use(cors({
+  credentials: true,
+  preflightContinue: true
+}))
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view', ExpressView)
 // app.set('view engine', 'ejs');
 app.set('view engine', 'twig')
+app.set('twig options',{allowAsync: true, strict_variables: false})
 // app.set('view options',{ layout: false })
 // app.engine('ejs',ejs)
 
@@ -55,8 +64,6 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-app.use(cors())
-
 app.use(session(sessionOptions))
 
 // const _config = webPackConfig()
@@ -79,43 +86,72 @@ app.use(session(sessionOptions))
 //   heartbeat: 10 * 1000,
 // }
 
-app.use(async(req: Request,res: Response,next: NextFunction) => {  
+const jwt = expressjwt({
+  secret: process.env.SECRET,
+  algorithms: ['HS256'],
+  getToken: (req) => req.cookies.accessToken
+}).unless({ path: ['/login','/error','/signup'] });
+
+const jwtVerification = (err: any, req: Request,res: Response,next: NextFunction) => {
+  if(err.name === 'UnauthorizedError'){
+    res.status(401).redirect('/login')
+    return;
+  }else{
+    next()
+  }
+};
+
+const middleware = async(req: Request,res: Response,next: NextFunction) => {
   res.locals = {
     baseUrl: req.url || '/',
     req: req
   }
-  // if(process.env.NODE_ENV === 'development' && !(req.session as any).user){
-  //   (req.session as any).user = await appDbContext.user.findFirst({
-  //     where: {
-  //       login: 'admin'
-  //     },
-  //     include: {
-  //       userRole: true
-  //     }
-  //   })
-  // }else{
-  //   if(!(<any>req.session).user && !['/login','/error'].includes(req.url)){
-  //     res.redirect('/login')
-  //     return
-  //   }
-  // } 
-  if(!(<any>req.session).user && !['/login','/error','/signup'].includes(req.url)){
-    res.redirect('/login')
-    return
+  
+  if(req.cookies.accessToken && (new Set(['/login']).has(req.url))){
+    res.redirect('/')
   }
   next()
-})
+};
+
+app.use([jwt,jwtVerification,middleware])
+
+// app.use(
+//   expressjwt({
+//     secret: process.env.SECRET,
+//     algorithms: ['HS256'],
+//     getToken: (req) => req.cookies.accessToken
+//   }).unless({ path: ['/login','/error','/signup'] }),
+//   (err: any, req: Request,res: Response,next: NextFunction) => {
+//     if(err.name === 'UnauthorizedError'){
+//       res.status(401).redirect('/login')
+//       return;
+//     }
+//   });
+
+// app.use(async(req: Request,res: Response,next: NextFunction) => {
+//   res.locals = {
+//     baseUrl: req.url || '/',
+//     req: req
+//   }
+  
+//   if(req.cookies.accessToken && (new Set(['/login']).has(req.url))){
+//     return res.redirect('/')
+//   }
+//   next()
+// });
 
 
 app.use('/', dashboardRoute)
 app.use('/containers',containersRoute)
+app.use('/users',usersRouter)
 app.use('/volumes',volumesRoute)
 app.use('/settings',settingsRouter)
-app.use('/services',servicesRouter)
+// app.use('/services',servicesRouter)
 app.use('/login',loginRouter)
 app.use('/logout',logoutRouter)
 app.use('/signup',signUpRouter)
 app.use('/stacks',stacksRouter)
+app.use('/service',serviceRouter)
 app.use('/navbar',navBar)
 app.use('*',(req,res) => res.status(404).send({erro: 'Página não encontrada'}))
 // app.use('/users',usersRouter)

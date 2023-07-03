@@ -11,17 +11,24 @@ const signUp = {
         ev.preventDefault()
         const formData = new FormData(form)
         
-        const response:any = await fetch(API_ROUTES.SIGNUP, {
-            method: 'POST',
-            body: formData
-        })
-        const { user = undefined, error = undefined } = await response.json()
-        if(user){
-            modal.open(() => {
-                location.href = '/login'
-            })            
-        }else{
-            alert(error)
+        try{
+            const response:any = await fetch(`${process.env.API_URL}/signup`, {
+                method: 'POST',
+                body: JSON.stringify({ login: formData.get('username'), password: formData.get('password') }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            })
+            const { user = undefined, error = undefined } = await response.json()
+            if(user){
+                modal.open(() => {
+                    location.href = '/login'
+                })            
+            }else{
+                throw error
+            }
+        }catch(ex){
+            alert(ex)
         }
     },
     browseFile(e: any){

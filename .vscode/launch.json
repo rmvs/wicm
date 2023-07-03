@@ -7,7 +7,7 @@
         {
             "type": "node-terminal",
             "request": "launch",
-            "name": "test",
+            "name": "Debug app",
             "skipFiles": [
                 "<node_internals>/**"
             ],

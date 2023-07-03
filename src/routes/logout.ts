@@ -8,12 +8,14 @@ logoutRouter.get('/',async(req: Request, res: Response) => {
             if(err){
                 reject({err})
             }else{
+                res.clearCookie('accessToken')
                 resolve({})
             }
         })
     })
     if(!error){
         res.redirect('/login')
+        res.end()
     }else{
         res.render(ErrorView,{ error })
     }

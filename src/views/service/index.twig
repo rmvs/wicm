@@ -1,0 +1,22 @@
+{% extends "../base/main.twig" %}
+
+{% block page_title %}
+	Serviço
+{% endblock %}
+
+
+{% block main_content %}
+
+<div>
+ <pre>
+  <code id="service-description">
+   Nenhum serviço encontrado.
+ </code>
+ </pre>
+</div>
+
+<script>
+app.service.fetchService(location.pathname.replace('/service/',''))
+</script>
+{% endblock %}
+

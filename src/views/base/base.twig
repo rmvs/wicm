@@ -7,7 +7,7 @@
     {# <link rel="stylesheet" href="dist/css/global-compiled.css">  #}
     <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>     -->
     <title>WICM - Dashboard</title> 
-    <script src="js/client.bundle.js"></script>
+    <script src="/js/client.bundle.js"></script>
   </head>
   <body class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500"> 
   <!--<script src="dist/js/app.js" type="module"></script>-->
@@ -17,14 +17,17 @@
         dashboard: {
           name: 'Dashboard',
           path: '/',
+          roles: ['ADMIN','OPERATOR','GUEST']
         },
         containers: {
           name: 'Stacks',
           path: '/stacks',
+          roles: ['ADMIN','OPERATOR']
         },
-        volumes: {
-          name: 'Volumes',
-          path: '/volumes',
+        services: {
+          name: 'Tasks',
+          path: '/tasks',
+          roles: ['ADMIN','OPERATOR']
         },
     }  
 %}

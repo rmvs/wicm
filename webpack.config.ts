@@ -59,7 +59,8 @@ const config: any = {
         // { from: 'src/views', to: 'views' },
         { from: 'public/images', to: 'public/images'},
         { from: 'public/fonts', to: 'public/fonts'},
-        { from: 'public/uploads', to: 'public/uploads'}
+        { from: 'public/uploads', to: 'public/uploads'},
+        { from: 'public/templates', to: 'public/templates'}
       ],
     }),
     new Dotenv({
@@ -130,7 +131,11 @@ const config: any = {
     nodeExternals({
       allowlist: [
         'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true&timeout=20000&overlay=false&noInfo=true',
-        'webpack-dev-server',        
+        'webpack-dev-server',
+        'twig',
+        /^locutus/,  
+        /^fs/,
+        /^path/,
         /^tailwindcss/,   
         /^lodash/
       ]

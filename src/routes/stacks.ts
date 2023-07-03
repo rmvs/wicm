@@ -3,6 +3,8 @@ import StacksView from '@/views/stacks/index.twig'
 import multer from "multer";
 import appDbContext from "@/prisma";
 import { generateUUID } from "@/lib/utils";
+import fs from 'fs'
+import os from 'path'
 
 const stacksRouter = Router()
 
@@ -16,7 +18,10 @@ interface StackPayload {
 
 
 stacksRouter.get('/',(req: Request, res: Response) => {
-    res.render(StacksView)
+
+    const stackTemplate = fs.readFileSync(os.join(__dirname,'public/templates/docker-compose.yml')).toString('utf-8')
+    
+    res.render(StacksView,{ stackTemplate })
 })
 
 stacksRouter.post('/',upload.any(),async(req: Request, res: Response) => {

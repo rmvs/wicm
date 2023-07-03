@@ -1,0 +1,22 @@
+
+version: '3.9'
+
+networks:
+  DEFAULT_STACK_NETWORK:
+    external: true
+
+services:
+  service-01:
+    image: <image>
+    deploy:
+      mode: replicated
+      replicas: <number of replicas>
+      labels:
+        - com.docker.stack.namespace=STACK-NAME
+        - traefik.http.routers.todos.rule=Host(<hostname>)
+        - traefik.http.services.todos-service.loadbalancer.server.port=<service port>
+      placement:
+        constraints:
+           - node.role == worker
+    networks:
+      - DEFAULT_STACK_NETWORK

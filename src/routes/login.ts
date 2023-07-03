@@ -17,18 +17,22 @@ loginRouter.get('/',(req: Request, res: Response) => {
 loginRouter.post('/',async (req: Request,res: Response) => {
     const { username, password } = req.body
     const hashedPassword = hashMD5(password)
-    let user = await appDbContext.user.findFirst({
-        where: {
-            login: username
+    const buf = Buffer.from(`${username}:${password}`);
+    const response = await fetch(process.env.API_URL + '/auth',{
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${buf.toString("base64")}`
         }
-    })
-    if(user){
-        if(user.password === hashedPassword){
-            (req.session as any).user = user
-            res.redirect('/')
-            return
-        }      
-    }
+    });
+    if(response.status === 200){
+        const { accessToken = {} } = await response.json()
+        if(accessToken){
+            return res.cookie('accessToken',accessToken,{
+                httpOnly: false
+            }).redirect('/')
+        }
+    }   
+    
     res.render(LoginView,{error: 'Credenciais inválidas'})
 })
 

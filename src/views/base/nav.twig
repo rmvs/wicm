@@ -40,7 +40,7 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             {# {% if true %} hover:bg-gray-700 hover:text-white rounded-md {% endif %} #}
             {# {% if true == baseUrl %} aria-current="page" {% endif %} #}
-            {% for item in navBarMenuItems %}
+            {% for item in navBarMenuItems if req.auth.userRole.roleName in item.roles %}
               <a href="{{ item.path }}" class="{% if item.path == baseUrl %} text-white bg-gray-900 {% else %} text-gray-300 hover:bg-gray-700 {% endif %} rounded-md px-3 py-2 text-sm font-medium" {% if item.path == baseUrl %} aria-current="page" {% endif %}>
                 {{ item.name }}
               </a>

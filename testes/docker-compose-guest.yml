@@ -1,0 +1,28 @@
+version: '3.9'
+
+networks:
+  DEFAULT_STACK_NETWORK:
+    external: true
+
+services:
+  redis:
+    image: redis
+    ports:
+      - 7969:6379
+    volumes:
+      - redis-data:/usr/local/etc/redis
+    environment:
+      - teste=testes
+      - outroteste=22
+    deploy:
+      mode: replicated
+      replicas: 2      
+      labels:
+        - com.docker.stack.namespace=REDIS-STACK-GUEST
+        # - traefik.http.routers.todos.rule=Host(<hostname>)
+        # - traefik.http.services.todos-service.loadbalancer.server.port=<service port>
+      placement:
+        constraints:
+           - node.role == worker
+    networks:
+      - DEFAULT_STACK_NETWORK
