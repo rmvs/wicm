@@ -36,7 +36,7 @@ const stacks = {
                     'Authorization': getAuthorization()
                 }
             })
-            const { servicesCreated = {}, error: { json: { message = {}} = {} } } = await response.json()
+            const { servicesCreated = {}, error = {} } = await response.json()
             if(response.status === 200){
                 notification.classList.remove('hidden')
                 notification.classList.add('bg-green-200','text-green-600')
@@ -45,7 +45,7 @@ const stacks = {
             }else{
                 notification.classList.remove('hidden')                
                 notification.classList.add('bg-red-200','text-red-600')
-                document.getElementById('notification-message').innerHTML = message
+                document.getElementById('notification-message').innerHTML = JSON.stringify(error)
             }
         }catch(ex){
             alert(String(ex))

@@ -1,1 +1,3 @@
-export const getAuthorization = () => `Bearer ${document.cookie.split('=')[1]}`
+export const getAuthorization = () => {
+    return `Bearer ${document.cookie.split('; ').find(r => r.startsWith('accessToken=')).split('=')[1]}`
+}
