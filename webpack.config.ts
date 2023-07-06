@@ -207,13 +207,12 @@ const config: any = {
 if(isProduction){
   config.mode = "production"
 }else{
-  config.mode = "development"
-      config.plugins.push(new WebpackShellPluginNext({
-      onBuildEnd: {
-      scripts: ['nodemon -e ts,css,twig,js ./build/server.bundle.js'],
-      blocking: false,
-      parallel: true
-    }}))
+  config.plugins.push(new WebpackShellPluginNext({
+    onBuildEnd: {
+    scripts: ['nodemon -e ts,css,twig,js ./build/server.bundle.js'],
+    blocking: false,
+    parallel: true
+  }}))
 }
 
 export default config
