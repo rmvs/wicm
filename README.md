@@ -56,13 +56,12 @@ You need to configure a session secret in the .env file before running this app
 
 ```sh
 SESSION_SECRET=
-DOCKER_HOST=
 BASE_URL=
 API_URL=
 SECRET=
 ```
 
-You can use the default docker socket in the variable ```DOCKER_HOST``` (tcp://127.0.0.1:2375). Configure the ```API_URL``` as an URL that points to the project [API](https://github.com/rmvs/wicm-api).
+Configure the ```API_URL``` as an URL that points to the running project [WICM-API](https://github.com/rmvs/wicm-api).
 
 ## References
 
