@@ -7,32 +7,11 @@ import TerserPlugin from "terser-webpack-plugin";
 import Dotenv from 'dotenv-webpack'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 
-// import webpack from 'webpack'
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const { CleanWebpackPlugin }  = require('clean-webpack-plugin')
-// const nodeExternals = require('webpack-node-externals');
-// const webpack  = require("webpack");
-// const WebpackShellPluginNext = require('webpack-shell-plugin-next');
-// const NodemonPlugin = require('nodemon-webpack-plugin')
-// const Dotenv = require('dotenv')
-
 const isProduction = process.env.NODE_ENV == "production";
-// "css-loader", "postcss-loader"
 const config: any = {  
   mode: "development",
-  // entry: {
-  //   main: "./src/index.ts",
-  // },
-  // entry: './src/index.ts',
-  // entry: {
-  //   app: './src/index.ts',
-  //   hot: 'webpack/hot/dev-server.js',
-  //   client: 'webpack-dev-server/client/index.js?hot=true&live-reload=true'
-  // },
   entry: {
     server: [
-      // 'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true&timeout=20000&overlay=false&noInfo=true',
       './src/index.ts',
     ],
     'public/js/client': ['./src/client/index.ts']
@@ -50,10 +29,6 @@ const config: any = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    // new HtmlWebpackPlugin({
-    //   template: "build/index.html",
-    // }),
-    // new webpack.HotModuleReplacementPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         // { from: 'src/views', to: 'views' },
@@ -69,9 +44,6 @@ const config: any = {
     new CssMinimizerPlugin({
       minify: CssMinimizerPlugin.cleanCssMinify
     }),
-    // new NodemonPlugin({
-    //   script: './build/app.bundle.js',
-    // })    
   ],
   module: {
     rules: [
@@ -108,8 +80,6 @@ const config: any = {
         test: /\.twig$/,
         use: 'twigjs-loader',
       }
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {
@@ -130,8 +100,6 @@ const config: any = {
   externals: [
     nodeExternals({
       allowlist: [
-        'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true&timeout=20000&overlay=false&noInfo=true',
-        'webpack-dev-server',
         'twig',
         /^locutus/,  
         /^fs/,
@@ -180,29 +148,6 @@ const config: any = {
   ],
   }
 };
-// nodemon -e ts,js,twig ./build/app.bundle.js
-// module.exports = () => {
-//   if (isProduction) {
-//     config.mode = "production";
-//   } else {
-//     config.mode = "development";
-//     config.plugins.push(new WebpackShellPluginNext({
-//       // onBuildStart: {
-//       //   scripts: ['npm run build-css'],
-//       //   blockin: true,
-//       //   parallel: false
-//       // },
-//       onBuildEnd: {
-//       scripts: ['nodemon -e ts,css,twig,js ./build/server.bundle.js'],
-//       blocking: false,
-//       parallel: true
-//     }}))
-//     // config.plugins.push(new WebpackShellPlugin({
-//     //   onBuildEnd: ['nodemon ./build/app.bundle.js']
-//     // }))    
-//   }
-//   return config;
-// };
 
 if(isProduction){
   config.mode = "production"
