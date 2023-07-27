@@ -1,7 +1,7 @@
 # WICM
 
 WICM stands for Web Interface for Container Management. Its primary goal is to expose a web interface for [container](https://cloud.google.com/learn/what-are-containers) management using [docker](https://docs.docker.com/get-started/overview/) as backend for application service creation.
-There are other tools known for this kind of task. This is an experimental project that aims to use [IaC](https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac) tools and to cover common aspects of web application development for academic purposes.
+There are other tools known for this kind of task. This is an experimental project that aims to use [IaC](https://www.redhat.com/en/topics/automation/what-is-infrastructure-as-code-iac) tools and to cover common aspects of web application development.
 
 You can get an overview [here](./docs/Web%20Interface%20for%20Container%20Management%20-%20Release%203.pdf).
 
